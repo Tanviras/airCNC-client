@@ -7,31 +7,39 @@ import Pricing from './Features/Pricing/Pricing';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useParams } from 'react-router-dom';
-
+import messi from '../../imagesAll/images/messi.jpg';
+import commonPhoto from '../../imagesAll/images/commonPhoto.jpg';
 
 const SingleHome = () => {
     const {key} = useParams();
+    // console.log(key);//key has all keys of all homes
+
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const chevronWidth = 40;
 
     const [homeRules, setHomeRules] = useState({});
     const [home, setHome] = useState({});
 
+
+    //fetching homerules,homerules are same for every home
     useEffect(() => {
         fetch("https://air-cnc-homes-api.herokuapp.com/homeRules")
         .then(res=>res.json())
         .then(data=> setHomeRules(data));
     }, [homeRules.length]);
-    const url = `https://air-cnc-homes-api.herokuapp.com/homeDetails/${key}`;
+
+
+    //fetching particular home details using key
     useEffect(() => {
-        fetch(url)
+        fetch(`https://air-cnc-homes-api.herokuapp.com/homeDetails/${key}`)
         .then(res=>res.json())
         .then(data=> setHome(data));
-    }, [homeRules.length]);
+    });
 
     useEffect(()=>{
         window.scrollTo(0,0);
     },[]);
+
     return (
         <div>
             <div className="images">
@@ -45,29 +53,36 @@ const SingleHome = () => {
                     outsideChevron
                     chevronWidth={chevronWidth}
                 >
+                    {/* particular home er image */}
                     <img className="w-100 d-block" src={home.image} alt=""/>
-                    <img className="w-100 d-block" src={'https://imgur.com/O3JSVr5.png'} alt=""/> 
+                    <img className="w-100 d-block" src='https://i.imgur.com/k1rCcMU.jpg' alt=""/> 
                 </ItemsCarousel>
+
+
+
 
                 <Container>
                     <Row className="my-5">
                         <Col md={7} className="pr-5">
                             <div className="d-flex justify-content-between">
+
+                                {/* home name */}
                                 <h2>{home.name}</h2>
+
                                 <div className="text-center">
-                                <img src="https://imgur.com/Gyu1TXZ.png"
+                                <img src={messi}
                                 className="host-img"
                                 alt=""/>
-                                <p>Rowdra</p>
+                                <p>Messi</p>
                                 </div>
                                 
                             </div>
                             <p className="text-secondary">Dhaka, Bangladesh</p>
                             <p className="text-secondary border-bottom pb-3">
-                                <span className="mr-3">4 Guest</span>
+                                <span className="mr-3">4 Guests</span>
                                 <span className="mr-3">2 bedrooms</span>
                                 <span className="mr-3">2 beds</span>
-                                <span>2 bath</span>
+                                <span>2 bathrooms</span>
                             </p>
 
                             <Features/>
@@ -78,12 +93,15 @@ const SingleHome = () => {
                             <h6 className="mt-5">Reviews</h6>
                             <p>
                             <FontAwesomeIcon className="text-primary" icon={faStar}/> 5 (200 reviews)
-                            </p>
+                            </p> 
                         </Col>
                         <Col md={5}>
-                            <Pricing/>
+                            {/* <Pricing/> */}
+                            Pricing 
                         </Col>
                     </Row>
+
+                    
                 </Container>
             </div>
         </div>

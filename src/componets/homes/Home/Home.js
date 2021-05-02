@@ -11,7 +11,7 @@ const Home = (props) => {
         
         <div className="home">
             <Link to={`/home/${key}`}>
-            <img className="img-fluid rounded" src={image}/>
+            <img className="img-fluid rounded" src={image} alt=''/>
             </Link>
                 <h6>{location}</h6>
                 <h5>{name}</h5>

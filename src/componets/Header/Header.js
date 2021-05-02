@@ -8,11 +8,14 @@ const Header = () => {
     return (
         <Navbar bg="white" className="border-bottom" expand="lg">
             <Container>
+
             <Navbar.Brand href="#home">
                 <Link to="/">
-                    <img src={logo} alt="AirCNC"/>
+                    <img src={logo} alt="AirCNC" className='logo-size'/>
                 </Link>
             </Navbar.Brand>
+
+
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto align-items-center">
@@ -21,9 +24,9 @@ const Header = () => {
                     <Link to="/help" className="nav-link">Help</Link>
                     <Link to="/login" className="nav-link">Login</Link>
                     <Link to="/signup"><Button variant="primary" className="btn-rounded">Sign Up</Button></Link>
-                </Nav>
-                
+                </Nav>   
             </Navbar.Collapse>
+
             </Container>
         </Navbar>
     );

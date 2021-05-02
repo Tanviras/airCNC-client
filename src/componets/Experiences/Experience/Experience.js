@@ -8,7 +8,7 @@ const Experience = (props) => {
     return (
         
         <div className="home experience">
-            <img className="img-fluid rounded" src={image}/>
+            <img className="img-fluid rounded" src={image} alt=''/>
                 <h6>{location}</h6>
                 <h5>{name}</h5>
                 <p className="text-secondary small">${price} per person</p>
