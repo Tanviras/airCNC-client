@@ -1,32 +1,42 @@
-// import logo from './logo.svg';
-// import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
-import Experiences from "./Components/Experiences/Experiences";
-import Home from "./Components/Home/Home";
+import React, { createContext } from 'react';
+import './App.css';
+import Home from './pages/Home';
+import { BrowserRouter as Router,Switch, Route } from "react-router-dom";
+// import SearchResult from './pages/SearchResult';
+// import NotFound from './pages/NotFound';
+// import HomeDetails from './pages/HomeDetails';
+// import Booking from './pages/Booking';
+import { useState } from 'react';
+
+export const SearchContext = createContext();
 
 function App() {
+  const [searchData, setSearchData] = useState({});
+  console.log(searchData)
   return (
-    <div>
-      <Router>
-        <Switch>
-
-          <Route exact path='/'>
-          <Home></Home>
+    <SearchContext.Provider value={{searchData, setSearchData}}>
+    <Router>
+      <Switch>
+          <Route exact path="/">
+            <Home/>
           </Route>
+          {/* <Route path="/search-result">
+            <SearchResult/>
+          </Route> */}
+          {/* <Route path="/home/:key">
+            <HomeDetails/>
+          </Route> */}
+          {/* <Route path="/booking">
+            <Booking/>
+          </Route> */}
+          {/* <Route path="*">
+            <NotFound/>
+          </Route> */}
 
-          <Route path='/addExperiences'>
-          <Experiences></Experiences>
-          </Route>
+      </Switch>
 
-
-        </Switch>
-      </Router>
-    
-    </div>
+    </Router>
+    </SearchContext.Provider>
   );
 }
 
