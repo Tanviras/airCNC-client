@@ -95,10 +95,12 @@ const SingleHome = () => {
                             <FontAwesomeIcon className="text-primary" icon={faStar}/> 5 (200 reviews)
                             </p> 
                         </Col>
+
                         <Col md={5}>
-                            {/* <Pricing/> */}
-                            Pricing 
+                            <Pricing/>
+                            {/* Pricing  */}
                         </Col>
+                        
                     </Row>
 
                     

@@ -17,28 +17,33 @@ const Pricing = () => {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
     let history = useHistory();
-    const redirect = () =>{
-        history.push('/booking');
-    }
+
     const onSubmit = data => {
         console.log(data);
         redirect();
     };
+
+    const redirect = () =>{
+        history.push('/booking');
+    }
+  
     return (
         <Form onSubmit={handleSubmit(onSubmit)} className="p-4 rounded pricing shadow">
             <h4>$34/<span className="font-weight-lighter">Night</span></h4>
             <p><FontAwesomeIcon className="text-primary" icon={faStar}/> <span>4.9(220 reviews)</span></p>
+
             <Form.Group>
                 <Form.Label>Dates</Form.Label>
                 <div  className="d-flex align-items-center form-control">
-                    <Form.Control ref={register({ required: true })} defaultValue={searchData.arrival && searchData.arrival} name="arrival" type="date"/>
+                    <Form.Control {...register("arrival")} defaultValue={searchData.arrival && searchData.arrival} name="arrival" type="date"/>
                     <FontAwesomeIcon className="mx-4" icon={faArrowRight}/>
-                    <Form.Control ref={register({ required: true })} defaultValue={searchData.departure && searchData.departure} name="departure" className="text-right" type="date"/>
+                    <Form.Control {...register("departure")} defaultValue={searchData.departure && searchData.departure} name="departure" className="text-right" type="date"/>
                 </div>
             </Form.Group>
+
             <Form.Group>
                 <Form.Label>Guest</Form.Label>
-                <Form.Control ref={register({ required: true })} name="guest" as="select">
+                <Form.Control {...register("guest")} name="guest" as="select">
                     <option selected={searchData.adult === '1'} defaultValue="1">1 guest</option>
                     <option  selected={searchData.adult === '2'}  defaultValue="2">2 guest</option>
                     <option  selected={searchData.adult === '3'}  defaultValue="3">3 guest</option>
@@ -65,7 +70,7 @@ const Pricing = () => {
                 </li>
             </ul>
             <Form.Group>
-                <input type="hidden" ref={register({ required: true })} defaultValue="130" name="totalFee"/>
+                <input type="hidden" {...register("totalFee")} defaultValue="130" name="totalFee"/>
                 <Button type="submit" block variant="primary">Reserve</Button>
                 <p className="text-secondary small mt-1 text-center">you won't be charged</p>
             </Form.Group>

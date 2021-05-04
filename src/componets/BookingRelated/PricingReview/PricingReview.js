@@ -32,14 +32,14 @@ const PricingReview = () => {
             <Form.Group>
                 <Form.Label>Dates</Form.Label>
                 <div  className="d-flex align-items-center form-control">
-                    <Form.Control ref={register({ required: true })} name="arrival" type="date"/>
+                    <Form.Control {...register("arrival")} name="arrival" type="date"/>
                     <FontAwesomeIcon className="mx-4" icon={faArrowRight}/>
-                    <Form.Control ref={register({ required: true })} name="departure" className="text-right" type="date"/>
+                    <Form.Control {...register("departure")} name="departure" className="text-right" type="date"/>
                 </div>
             </Form.Group>
             <Form.Group>
                 <Form.Label>Guest</Form.Label>
-                <Form.Control ref={register({ required: true })} name="guest" as="select">
+                <Form.Control {...register("guest")} name="guest" as="select">
                     <option value="1">1 guest</option>
                     <option value="2">2 guest</option>
                     <option value="3">3 guest</option>
@@ -66,7 +66,7 @@ const PricingReview = () => {
                 </li>
             </ul>
             <Form.Group>
-                <input type="hidden" ref={register({ required: true })} value="130" name="totalFee"/>
+                <input type="hidden" {...register("totalFee")} value="130" name="totalFee"/>
                 {/* <Button type="submit" block variant="primary">Reserve</Button> */}
             </Form.Group>
         </Form>

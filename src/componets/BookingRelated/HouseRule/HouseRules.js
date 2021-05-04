@@ -1,12 +1,15 @@
 import React, { useEffect,useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import './HouseRules.scss';
+
+
 const HouseRules = ({stepHandler}) => {
-    const [rules, setRules] = useState([])
+    const [rules, setRules] = useState([]);
+
     useEffect(() => {
         fetch("https://air-cnc-homes-api.herokuapp.com/homeRules")
         .then(res=>res.json())
-        .then(data=> setRules(data))
+        .then(data=> setRules(data));
     },[])
 
     return (

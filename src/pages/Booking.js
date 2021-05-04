@@ -8,6 +8,7 @@ import PricingReview from '../componets/BookingRelated/PricingReview/PricingRevi
 import { useState } from 'react';
 import MeetHost from '../componets/BookingRelated/MeetHost/MeetHost';
 import Payment from '../componets/BookingRelated/Payment/Payment';
+import CreditCard from '../componets/BookingRelated/CreditCard/CreditCard';
 
 const Booking = () => {
     
@@ -15,9 +16,11 @@ const Booking = () => {
     const stepHandler = (data) => {
         setStep(step +1);
     }
+
     useEffect(()=>{
         window.scrollTo(0,0);
     },[]);
+    
     return (
         <>
         <Header2/>
@@ -36,7 +39,7 @@ const Booking = () => {
                         step === 3 ?
                         <Payment stepHandler={stepHandler}/>
                         :
-                        <h1>Thank you ... </h1>
+                        <CreditCard stepHandler={stepHandler}/>
 
                     }
                 </Col>
