@@ -5,7 +5,9 @@ const Payment = ({stepHandler}) => {
     return (
         <div className="my-5">
             <h6>Payment Select</h6>
+            
             <Form>
+
                 <div className="rounded border p-4 my-3">
                     <Form.Check
                         defaultChecked={true}
@@ -16,6 +18,7 @@ const Payment = ({stepHandler}) => {
                         label="Credit Card"
                     />
                 </div>
+
                 <div className="rounded border p-4">
                 <Form.Check
                         name="paymentMethod"
@@ -25,9 +28,11 @@ const Payment = ({stepHandler}) => {
                         label="PayPal"
                     />
                 </div>
+
                 <div className="text-right my-5">
                     <Button onClick={() => stepHandler({})}>Continue to Pay</Button>
                 </div>
+
             </Form>
 
         </div>

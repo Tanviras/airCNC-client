@@ -10,6 +10,7 @@ import HomePreloader from '../Preloaders/HomePreloader';
 const Homes = () => {
     const [preloader,setPreloader] = useState(true);
     const [allHomes, setAllHomes] = useState([]);
+
     useEffect(() => {
         fetch("https://air-cnc-homes-api.herokuapp.com/homes")
         .then(res=>res.json())
@@ -18,7 +19,8 @@ const Homes = () => {
             setPreloader(false)
         })
     },[allHomes.length])
-    console.log(allHomes)
+    // console.log(allHomes)
+
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const chevronWidth = 40;
  
@@ -46,7 +48,7 @@ const Homes = () => {
                         chevronWidth={chevronWidth}
                     >
                         {
-                            allHomes.map(home => <Home home={home}/>)
+                            allHomes.map(home => <Home key={home.key} home={home}/>)
                         }
                     </ItemsCarousel>
                 </div>

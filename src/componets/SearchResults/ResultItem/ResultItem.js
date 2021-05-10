@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Row,Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
+import { SearchContext } from '../../../App';
 
 
 const ResultItem = (props) => {
     const {key, name,image, price, review} = props.home;
+    const {searchData} = useContext(SearchContext);
+
     return (
+        
         <Link to={`/home/${key}`}>
         <Row className="border-bottom mb-4">
+
             <Col md={5}>
                 <img className="img-fluid rounded" src={image} alt=""/>
             </Col>
+
             <Col md={7}>
                 <h6>{name}</h6>
-                <p className="text-secondary">With wifi air cikthen</p>
-                <p className="text-secondary">With wifi air cikthen</p>
+                <p className="text-secondary">With wifi air kitchen</p>
+                <p className="text-secondary">With wifi air kitchen</p>
                 <div className="d-flex justify-content-between">
                     <p className="text-secondary"><FontAwesomeIcon icon={faStar} className="text-primary"/> {review[0].star} ({review[0].count})</p>
                     <div>
@@ -24,8 +30,8 @@ const ResultItem = (props) => {
                         <p className="small text-secondary">$152 total</p>
                     </div>
                 </div>
-                
             </Col>
+
         </Row>
         </Link>
     );

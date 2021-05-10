@@ -8,13 +8,19 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from 'react';
 import { SearchContext } from '../../App';
 
+
 const Header2 = () => {
-    const {searchData,setSearchData} = useContext(SearchContext);
-    const date1 = new Date(searchData.arrival || new Date());
-    const date2 = new Date(searchData.departure  || new Date());
+    const {searchData} = useContext(SearchContext);
+    console.log(searchData);
+
+    const date1 = new Date(searchData.data.arrival || new Date());
+    const date2 = new Date(searchData.data.departure  || new Date());
     const arrivalMonth = new Intl.DateTimeFormat("en-US", { month: "short" }).format(date1);
     const getDepartureMonth =  new Intl.DateTimeFormat("en-US", { month: "short" }).format(date2);
     const departureMonth = arrivalMonth !== getDepartureMonth ? getDepartureMonth + " " : "";
+
+    const totalGuests=searchData.adult + searchData.child;
+
 
     return (
         <Navbar bg="white" className="border-bottom" expand="lg">
@@ -31,7 +37,7 @@ const Header2 = () => {
                 <Row className="ml-auto align-items-center col-md-5 header-search shadow">
                 
                    <Col md={4} className="m-0 p-0">
-                       <Form.Control defaultValue={searchData.city && searchData.city} placeholder="Location">  
+                       <Form.Control defaultValue={searchData.data.city && searchData.data.city} placeholder="Location">  
                        </Form.Control>
                    </Col>
 
@@ -41,7 +47,7 @@ const Header2 = () => {
                    </Col>
 
                    <Col md={3}  className="m-0 p-0">
-                       <Form.Control defaultValue={searchData.adult && searchData.adult + " Guest"} placeholder="Guest">
+                       <Form.Control defaultValue={totalGuests + " Guests"}>
                        </Form.Control>
                    </Col>
 

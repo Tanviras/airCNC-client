@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState } from 'react';
 import ItemsCarousel from 'react-items-carousel';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useEffect } from 'react';
@@ -8,7 +8,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useParams } from 'react-router-dom';
 import messi from '../../imagesAll/images/messi.jpg';
-import commonPhoto from '../../imagesAll/images/commonPhoto.jpg';
+
 
 const SingleHome = () => {
     const {key} = useParams();
@@ -19,6 +19,7 @@ const SingleHome = () => {
 
     const [homeRules, setHomeRules] = useState({});
     const [home, setHome] = useState({});
+
 
 
     //fetching homerules,homerules are same for every home
@@ -42,6 +43,7 @@ const SingleHome = () => {
 
     return (
         <div>
+
             <div className="images">
                 <ItemsCarousel
                     requestToChangeActive={setActiveItemIndex}
@@ -98,7 +100,6 @@ const SingleHome = () => {
 
                         <Col md={5}>
                             <Pricing/>
-                            {/* Pricing  */}
                         </Col>
                         
                     </Row>
@@ -106,6 +107,7 @@ const SingleHome = () => {
                     
                 </Container>
             </div>
+            
         </div>
     );
 };

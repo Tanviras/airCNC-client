@@ -3,6 +3,7 @@ import SingleHome from '../componets/SingleHome/SingleHome';
 import Header2 from '../componets/Header/Header2';
 
 const HomeDetails = () => {
+
     return (
         <div>
             <Header2/>

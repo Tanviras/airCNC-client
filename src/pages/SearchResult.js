@@ -18,6 +18,7 @@ const SearchResult = () => {
                 <Col md={6}>
                     <SearchResults/>
                 </Col>
+
                 <Col md={6}>
                     <Map/>
                 </Col>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header2 from '../componets/Header/Header2';
 import { Container, Row, Col } from 'react-bootstrap';
 import HouseRules from '../componets/BookingRelated/HouseRule/HouseRules';
@@ -9,6 +9,7 @@ import { useState } from 'react';
 import MeetHost from '../componets/BookingRelated/MeetHost/MeetHost';
 import Payment from '../componets/BookingRelated/Payment/Payment';
 import CreditCard from '../componets/BookingRelated/CreditCard/CreditCard';
+import { SearchContext } from '../App';
 
 const Booking = () => {
     
@@ -20,6 +21,10 @@ const Booking = () => {
     useEffect(()=>{
         window.scrollTo(0,0);
     },[]);
+
+    const {searchData} = useContext(SearchContext);
+    console.log(searchData);
+
     
     return (
         <>
@@ -28,6 +33,7 @@ const Booking = () => {
         <Container className="my-5">
             <StepIndicator step={step}/>
             <Row className="my-4">
+
                 <Col md={7}>
                     {
                         step === 1 ?
@@ -43,9 +49,11 @@ const Booking = () => {
 
                     }
                 </Col>
+
                 <Col md={5}>
                     <PricingReview/>
                 </Col>
+                
             </Row>
         </Container>
         </>

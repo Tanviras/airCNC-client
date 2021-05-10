@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Form,Row,Col, Button,Accordion,Card } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch,faAngleUp,faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
@@ -9,65 +11,100 @@ import { useHistory } from 'react-router-dom';
 import { SearchContext } from '../../App';
 import { useContext } from 'react';
 
-const AdvanceSearch = () => {
-    const {searchData, setSearchData} = useContext(SearchContext)
+const schema = yup.object().shape({
+   city: yup.string().required(),
+   arrival:yup.date().required(),
+   departure:yup.date().required(),
+  });
 
-    const [adult, setAdult] = useState(searchData.adult||1);
-    const [baby, setBaby] = useState(searchData.baby||0);
-    const [child, setChild] = useState(searchData.child||0);
+const AdvanceSearch = () => {
+    const {searchData, setSearchData} = useContext(SearchContext);
+
+    const [adult, setAdult] = useState(1);
+    const [child, setChild] = useState(0);
+    const [baby, setBaby] = useState(0);
     const [collapsed, setCollapsed] = useState(false);
     let history = useHistory();
 
-    const { register, handleSubmit} = useForm();
+     const { register, handleSubmit } = useForm({
+     resolver: yupResolver(schema),
+     });
 
     const redirect = () =>{
         history.push('/search-result');
     }
+    
     const onSubmit = data => {
-        setSearchData(data)
+        const allData={data,adult,child,baby}
+        setSearchData(allData);
+        console.log(searchData);
         redirect();
-    };
+    }
+
+    
     
     
 
     return (
-        <div class="advance-search pr-md-3">
+        <div className="advance-search pr-md-3">
             <h5 className="mb-4">Where do you want to go</h5>
 
             <Form onSubmit={handleSubmit(onSubmit)}>
+
                 <Form.Group className="rounded shadow p-3">
                     <Form.Label className="font-weight-bold">Location</Form.Label>
-                    <Form.Control defaultValue={searchData.city && searchData.city}   name="city" type="text" placeholder="Add city, landmark, area "></Form.Control>
-                    {/* ref={register({ required: true })} */}
-
+                    <Form.Control 
+                    {...register("city")} 
+                    defaultValue={searchData.city && searchData.city} 
+                    name="city" 
+                    type="text" 
+                    placeholder="Add city, landmark, area "
+                    >
+                    </Form.Control>
                 </Form.Group>
+
                 <Row>
                     <Col className="pr-0">
                         <Form.Group className="rounded shadow p-3 mr-0">
                             <Form.Label className="text-secondary">Arrival</Form.Label>
-                            <Form.Control  type="date" defaultValue={searchData.arrival && searchData.arrival} name="arrival"></Form.Control>
-                            {/* ref={register({ required: true })}  */}
-                        
+                            <Form.Control 
+                            {...register("arrival")} 
+                            type="date" 
+                            defaultValue={searchData.arrival && searchData.arrival} 
+                            name="arrival"
+                            >
+                        </Form.Control>
                         </Form.Group>
                     </Col>
+
                     <Col className="pl-1">
                         <Form.Group className="rounded shadow p-3 ">
                             <Form.Label  className="text-secondary">Departure</Form.Label>
-                            <Form.Control defaultValue={searchData.departure && searchData.departure}   type="date" name="departure"></Form.Control>
-                            {/* ref={register({ required: true })} */}
+
+                            <Form.Control 
+                            {...register("departure")} 
+                            defaultValue={searchData.departure && searchData.departure}
+                             type="date" 
+                             name="departure"
+                             >
+                            </Form.Control>
 
                         </Form.Group>
                     </Col>
                 </Row>
+
                 <Form.Group className="shadow">
                     <Accordion defaultActiveKey="0">
+                    {/* accordion =collapsible content */}
+
                     <Card>
                         <Accordion.Toggle
                         onClick={() => {collapsed ? setCollapsed(false) : setCollapsed(true) }}
                          as={Card.Header} className="bg-white d-flex justify-content-between align-items-center" eventKey="0">
+                            
                             <div>
                             <Form.Label className="text-secondary">Guest</Form.Label>
-                            <p className="font-weight-bold">{adult} Adults {child} Child</p>
+                            <p className="font-weight-bold">{adult} Adults -{child} Children - {baby} Babies</p>
                             </div>
                             
                             {
@@ -79,22 +116,38 @@ const AdvanceSearch = () => {
                             }
 
                         </Accordion.Toggle>
+
+
                         <Accordion.Collapse eventKey="0">
                         <Card.Body className="persons">
+
                             <div className="d-flex justify-content-between">
                                 <h6 className="text-uppercase">Adults</h6>
                                 <div className="d-flex align-items-center">
+
                                     <Button 
                                      onClick={() => adult > 0 && setAdult(adult - 1)}
-                                     variant="default" size="sm">-</Button>
-                                    <input name="adult" defaultValue={adult} type="text"/>
-                                    {/* ref={register({ required: true })} */}
+                                     variant="default" size="sm">-
+                                     </Button>
+
+                                    {/* <input 
+                                    {...register("adult")} 
+                                    name="adult"
+                                    defaultValue={adult}
+                                    type="number"
+                                    /> */}
+                                    {adult}
+                                   
 
                                     <Button variant="default" size="sm"
                                     onClick={() =>  setAdult(adult + 1)}
                                     >+</Button>
+
                                 </div>
                             </div>
+
+
+
                             
                             <div className="d-flex justify-content-between my-2">
                                 <div>
@@ -102,42 +155,65 @@ const AdvanceSearch = () => {
                                     <p className="text-secondary">age 2-12</p>
                                 </div>
                                 <div className="d-flex align-items-center">
-                                    <Button variant="default" size="sm"
-                                    onClick={() => child > 0 && setChild(child - 1)}
-                                    >-</Button>
-                                    <input name="child" defaultValue={child} type="text"/>
-                                    {/* ref={register({ required: true })} */}
+
+                                <Button 
+                                     onClick={() => child > 0 && setChild(child - 1)}
+                                     variant="default" size="sm">-
+                                     </Button>
+
+                                    {/* <input 
+                                    {...register("adult")} 
+                                    name="adult"
+                                    defaultValue={adult}
+                                    type="number"
+                                    /> */}
+                                    {child}
+                                   
 
                                     <Button variant="default" size="sm"
                                     onClick={() =>  setChild(child + 1)}
                                     >+</Button>
+
                                 </div>
                             </div>
                             <div className="d-flex justify-content-between">
                                 <div>
                                     <h6 className="text-uppercase">Babies</h6>
                                     <p className="text-secondary">Younger than 2</p>
+                                    <p className="text-secondary">(No fees applicable for babies)</p>
                                 </div>
+
                                 <div className="d-flex align-items-center">
-                                    <Button variant="default" size="sm"
-                                    onClick={() => baby > 0 && setBaby(baby - 1)}
-                                    >-</Button>
-                                    <input name="baby" defaultValue={baby} type="text"/>
-                                    {/* ref={register({ required: true })} */}
+
+                                <Button 
+                                     onClick={() =>  baby> 0 && setBaby(baby - 1)}
+                                     variant="default" size="sm">-
+                                </Button>
+
+                                    {/* <input 
+                                    {...register("adult")} 
+                                    name="adult"
+                                    defaultValue={adult}
+                                    type="number"
+                                    /> */}
+                                    {baby}
+                                   
 
                                     <Button variant="default" size="sm"
                                     onClick={() =>  setBaby(baby + 1)}
                                     >+</Button>
+
                                 </div>
+
                             </div>
-                            {/* <div className="text-right">
-                                <Button variant="outline-primary" size="sm">Apply</Button>
-                            </div> */}
                         </Card.Body>
                         </Accordion.Collapse>
+
                     </Card>
                     </Accordion>
                 </Form.Group>
+
+
                 <Form.Group>
                     <Button block type="submit" variant="primary">
                         <FontAwesomeIcon className="mr-2" icon={faSearch} /> 

@@ -9,6 +9,7 @@ import ExperiencePreloader from '../Preloaders/ExperiencePreloader';
 const Experiences = () => {
     const [allExperience, setAllExperience] = useState([]);
     const [preloader, setPreloader] = useState(true);
+    
     useEffect(() => {
         fetch("https://air-cnc-homes-api.herokuapp.com/experiences")
         .then(res=>res.json())
@@ -44,7 +45,7 @@ const Experiences = () => {
                         chevronWidth={chevronWidth}
                     >
                         {
-                            allExperience.map(experience => <Experience experience={experience}/>)
+                            allExperience.map(experience => <Experience key ={experience.key} experience={experience}/>)
                         }
                         
                     </ItemsCarousel>
