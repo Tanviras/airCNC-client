@@ -8,6 +8,7 @@ import HomeDetails from './pages/HomeDetails';
 import Booking from './pages/Booking';
 import { useState } from 'react';
 import HostingHome from './pages/HostingHome/HostingHome';
+import HostingExperience from './pages/HostingExperience/HostingExperience';
 
 export const SearchContext = createContext();
 
@@ -40,6 +41,10 @@ function App() {
 
           <Route path="/host-home">
             <HostingHome></HostingHome>
+          </Route>
+
+          <Route path="/host-experience">
+            <HostingExperience></HostingExperience>
           </Route>
 
           <Route path="*">
