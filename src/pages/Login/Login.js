@@ -1,15 +1,82 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useHistory, useLocation } from "react-router-dom";
 import logo from '../../imagesAll/images/aircncLogo.png';
+import googleLogo from '../../imagesAll/images/google.png';
+import './Login.css';
+import loginPhoto from '../../imagesAll/images/aircncLogin.png';
+import firebase from "firebase/app";
+import firebaseConfig from "./firebase.config";
+import "firebase/auth";
+import { UserContext } from '../../App';
 
 const Login = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const history = useHistory();
+    const location = useLocation();
+    const { from } = location.state || { from: { pathname: "/" } };
+
+    if (firebase.apps.length === 0) {
+        firebase.initializeApp(firebaseConfig);
+      }
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      const handleGoogleSignIn = () => {
+        firebase
+          .auth()
+          .signInWithPopup(provider)
+          .then(function (result) {
+            const { displayName, email } = result.user;
+            const signedInUser = { name: displayName, email };
+            setLoggedInUser(signedInUser);
+            history.replace(from);
+          })
+          .catch(function (error) {
+            // // Handle Errors here.
+            // var errorCode = error.code;
+            // var errorMessage = error.message;
+            // // The email of the user's account used.
+            // var email = error.email;
+            // // The firebase.auth.AuthCredential type that was used.
+            // var credential = error.credential;
+            // // ...
+          });
+      };
+
     return (
         <div>
-            <div>
-            <Link to="/">
-                <img src={logo} alt='logo' className='logoSize '/>
-            </Link>
+
+            <div className="row">
+
+                <div className="col-md-6">
+
+                    <div>
+                        <Link to="/">
+                            <img src={logo} alt='logo' className='logoSize ' />
+                        </Link>
+                    </div>
+
+                    <div className='loginBox' >
+                        <h2> Login With</h2>
+                        <div className='googleBox'  onClick={handleGoogleSignIn}>
+                            <img src={googleLogo} alt='googleLogo' className='googleLogo' />
+                            <span className='writing'>Continue with Google</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div className='col-md-6'>
+                    <div style={{height:'100%'}}>
+                        <img src={loginPhoto} alt="loginPhoto" style={{maxWidth: '100%',maxHeight: '100vh',margin: 'auto'}}/>
+                    </div>
+                </div>
+
+
             </div>
+
+
+
         </div>
     );
 };

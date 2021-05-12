@@ -10,14 +10,18 @@ import { useState } from 'react';
 import HostingHome from './pages/HostingHome/HostingHome';
 import HostingExperience from './pages/HostingExperience/HostingExperience';
 import Login from './pages/Login/Login';
+import PrivateRoute from './pages/Login/PrivateRoute';
 
 export const SearchContext = createContext();
+export const UserContext = createContext();
 
 function App() {
   const [searchData, setSearchData] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({});
   
   return (
     <SearchContext.Provider value={{searchData, setSearchData}}>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
     <Router>
       <Switch>
           <Route exact path="/">
@@ -40,13 +44,13 @@ function App() {
             <Booking/>
           </Route>
 
-          <Route path="/host-home">
+          <PrivateRoute path="/host-home">
             <HostingHome></HostingHome>
-          </Route>
+          </PrivateRoute>
 
-          <Route path="/host-experience">
+          <PrivateRoute path="/host-experience">
             <HostingExperience></HostingExperience>
-          </Route>
+          </PrivateRoute>
 
           <Route path="/login">
             <Login></Login>
@@ -59,6 +63,7 @@ function App() {
       </Switch>
 
     </Router>
+    </UserContext.Provider>
     </SearchContext.Provider>
   );
 }
