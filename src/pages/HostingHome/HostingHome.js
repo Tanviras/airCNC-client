@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './HostingHome.css';
 import logo from '../../imagesAll/images/aircncLogo.png';
+import { Link } from 'react-router-dom';
 
 const HostingHome = () => {
 
@@ -64,7 +65,9 @@ const HostingHome = () => {
         <div className='hostingPage'>
 
             <div className='text-center'>
+            <Link to="/">
                 <img src={logo} alt='logo' className='logoSize '/>
+            </Link>
             </div>
 
             <form class="row g-3" onSubmit={handleSubmit}>

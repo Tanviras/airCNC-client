@@ -1,6 +1,9 @@
 import React , { useState }from 'react';
 import logo from '../../imagesAll/images/aircncLogo.png';
 import './HostingExperiences.css';
+import { Link } from 'react-router-dom';
+
+
 
 const HostingExperience = () => {
     const [info, setInfo] = useState({});
@@ -17,6 +20,8 @@ const HostingExperience = () => {
       setFile(newFile);
     };
 
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData();
@@ -29,7 +34,6 @@ const HostingExperience = () => {
         formData.append("price",info.price);
         formData.append("heading",info.heading);
         formData.append("description",info.description);
-
     
         fetch("http://localhost:5000/addExperiences", {
           method: "POST",
@@ -51,7 +55,9 @@ const HostingExperience = () => {
         <div className='hostingPage'>
 
             <div className='text-center'>
+            <Link to="/">
                 <img src={logo} alt='logo' className='logoSize '/>
+            </Link>
             </div>
 
             <form class="row g-3" onSubmit={handleSubmit}>
