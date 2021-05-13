@@ -1,24 +1,16 @@
 import React, { useContext } from 'react';
-import { Form, Button, Row,Col } from 'react-bootstrap';
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
+import { Form,Row,Col } from 'react-bootstrap';
 import { SearchContext } from '../../../App';
 
-const schema = yup.object().shape({
-    description:yup.string().required()
-   });
 
 
 const MeetHost = ({stepHandler}) => {
     const {searchData} = useContext(SearchContext);
     console.log(searchData);
 
-    const { register, handleSubmit} = useForm({
-        resolver: yupResolver(schema),
-        });
 
-    const onSubmit = data => {
+
+    const handleSubmit = data => {
         stepHandler();
     };
 
@@ -29,22 +21,24 @@ const MeetHost = ({stepHandler}) => {
             <p>Say hello to our host</p>
             <p>Let Rowdra know a little bit yourself and why you are coming</p>
 
-            <Form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit}>
 
-                <Form.Control {...register("description")} as="textarea" rows="5" className="my-4" name='description'>
+                <Form.Control as="textarea" rows="5" className="my-4" name='description'>
                 </Form.Control>
 
-                <Form className="Group">
-                    <Button type="submit">Continue</Button>
-                </Form>
+                <div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
 
-            </Form>
+            </form>
+
             </Col>
 
             <Col md={3} className="text-center">
                 <img className="host-img" src="https://imgur.com/Gyu1TXZ.png" alt=""/>
                 <p>Rowdra</p>
             </Col>
+
         </Row>
     );
 };

@@ -1,10 +1,5 @@
 import React, { useContext, useEffect,useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
-
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
-
 import './HouseRules.scss';
 import { SearchContext } from "./../../../App";
 
@@ -15,6 +10,7 @@ const HouseRules = ({stepHandler}) => {
 
     const {searchData} = useContext(SearchContext);
     console.log(searchData);
+    
 
 
         const sda=searchData.data.arrival;
