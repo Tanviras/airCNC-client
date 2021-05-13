@@ -1,16 +1,22 @@
-import React, { useContext } from 'react';
-import { Form,Row,Col } from 'react-bootstrap';
-import { SearchContext } from '../../../App';
+import React from 'react';
+import {Row,Col } from 'react-bootstrap';
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
 
 
+const schema = yup.object().shape({
+    description: yup.string().required()
+   });
 
 const MeetHost = ({stepHandler}) => {
-    const {searchData} = useContext(SearchContext);
-    console.log(searchData);
+
+    const { register, handleSubmit} = useForm({
+        resolver: yupResolver(schema),
+        });
 
 
-
-    const handleSubmit = data => {
+    const onSubmit = data => {
         stepHandler();
     };
 
@@ -21,10 +27,11 @@ const MeetHost = ({stepHandler}) => {
             <p>Say hello to our host</p>
             <p>Let Rowdra know a little bit yourself and why you are coming</p>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
 
-                <Form.Control as="textarea" rows="5" className="my-4" name='description'>
-                </Form.Control>
+                <textarea rows="5" cols='60' className="my-4" name='description'  
+                {...register("description")}/>
+               
 
                 <div>
                 <button type="submit" class="btn btn-primary">Submit</button>

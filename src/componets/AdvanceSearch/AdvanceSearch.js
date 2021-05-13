@@ -37,7 +37,6 @@ const AdvanceSearch = () => {
     const onSubmit = data => {
         const allData={data,adult,child,baby}
         setSearchData(allData);
-        console.log(searchData);
         redirect();
     }
 
@@ -53,6 +52,7 @@ const AdvanceSearch = () => {
 
                 <Form.Group className="rounded shadow p-3">
                     <Form.Label className="font-weight-bold">Location</Form.Label>
+                    
                     <Form.Control 
                     {...register("city")} 
                     defaultValue={searchData.city && searchData.city} 
