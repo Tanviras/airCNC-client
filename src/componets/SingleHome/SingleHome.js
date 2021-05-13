@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, {useContext, useState } from 'react';
 import ItemsCarousel from 'react-items-carousel';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useEffect } from 'react';
@@ -8,6 +8,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useParams } from 'react-router-dom';
 import messi from '../../imagesAll/images/messi.jpg';
+import { SearchContext } from '../../App';
 
 
 const SingleHome = () => {
@@ -19,6 +20,8 @@ const SingleHome = () => {
 
     const [homeRules, setHomeRules] = useState({});
     const [home, setHome] = useState({});
+
+    const {searchData} = useContext(SearchContext);
 
 
 
@@ -79,7 +82,7 @@ const SingleHome = () => {
                                 </div>
                                 
                             </div>
-                            <p className="text-secondary">Dhaka, Bangladesh</p>
+                            <p className="text-secondary">{searchData.data.city}</p>
                             <p className="text-secondary border-bottom pb-3">
                                 <span className="mr-3">4 Guests</span>
                                 <span className="mr-3">2 bedrooms</span>

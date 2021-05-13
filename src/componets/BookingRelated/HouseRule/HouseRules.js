@@ -9,25 +9,39 @@ const HouseRules = ({stepHandler}) => {
     const [rules, setRules] = useState([]);
 
     const {searchData} = useContext(SearchContext);
-    console.log(searchData);
-    
 
 
+        //dates in string
         const sda=searchData.data.arrival;
         const sdd=searchData.data.departure;
 
-        
+        //dates in yyyy-mm-dd format
         const arrivalDate=sda.toISOString().slice(0, 10);
-        // console.log(arrivalFullDate);
         const departureDate=sdd.toISOString().slice(0, 10);
-        // console.log(departureFullDate);
 
+        //months
         const arrivalMonth=sda.toLocaleString('default', { month: 'short'});
         const departureMonth=sdd.toLocaleString('default', { month: 'short'});
 
-        // const arrivalSingleDate=sda.toISOString().slice(0, 10).getDate();
-        // const departureSingleDate=sdd.toISOString().slice(0, 10).getDate();
+        //only the date from the whole dd-mm-yyyy
+        const arrivalSingleDate=sda.getDate();
+        const departureSingleDate=sdd.getDate();
 
+        var weekday = new Array(7);
+        weekday[0] = "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wednesday";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+      
+        const arrivalDay = weekday[sda.getDay()];
+        const departureDay = weekday[sdd.getDay()];
+
+
+
+        //time
         const arrivalTime=sda.getTime();
         const departureTime=sdd.getTime();
 
@@ -47,7 +61,7 @@ const HouseRules = ({stepHandler}) => {
     return (
         <div className="house-rules">
             <h3>Review House rules</h3>
-            <h5>{diffDays} nights in Dhaka</h5>
+            <h5>{diffDays} nights in {searchData.data.city}</h5>
            
 
             <Row className="my-5">
@@ -57,12 +71,12 @@ const HouseRules = ({stepHandler}) => {
                     <div className="date">
                         <h6>{arrivalMonth}</h6>
                         
-                        <p className="m-0  pb-1">{arrivalDate}</p>
+                        <p className="m-0  pb-1">{arrivalSingleDate}</p>
                         
                     </div>
 
                     <div>
-                        <p className="small m-0 text-secondary">Monday check-in</p>
+                        <p className="small m-0 text-secondary">{arrivalDay} check-in</p>
                         <p className="small m-0 text-secondary">After 12:00 PM</p>
                     </div>
 
@@ -73,11 +87,11 @@ const HouseRules = ({stepHandler}) => {
                     <div className="date">
                         <h6>{departureMonth}</h6>
                         
-                        <p className="m-0 pb-1"> {departureDate}</p>
+                        <p className="m-0 pb-1"> {departureSingleDate}</p>
                        
                     </div>
                     <div>
-                        <p className="small m-0 text-secondary">Thrusday check-out</p>
+                        <p className="small m-0 text-secondary">{departureDay} check-out</p>
                         <p className="small m-0 text-secondary">After 12:00 PM</p>
                     </div>
                 </Col>

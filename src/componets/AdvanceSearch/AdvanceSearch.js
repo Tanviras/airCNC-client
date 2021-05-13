@@ -64,9 +64,9 @@ const AdvanceSearch = () => {
                 </Form.Group>
 
                 <Row>
-                    <Col className="pr-0">
-                        <Form.Group className="rounded shadow p-3 mr-0">
-                            <Form.Label className="text-secondary">Arrival</Form.Label>
+                    <Col>
+                        <Form.Group className="rounded shadow p-3">
+                            <Form.Label className="font-weight-bold">Arrival</Form.Label>
                             <Form.Control 
                             {...register("arrival")} 
                             type="date" 
@@ -77,9 +77,9 @@ const AdvanceSearch = () => {
                         </Form.Group>
                     </Col>
 
-                    <Col className="pl-1">
-                        <Form.Group className="rounded shadow p-3 ">
-                            <Form.Label  className="text-secondary">Departure</Form.Label>
+                    <Col>
+                        <Form.Group className="rounded shadow p-3">
+                            <Form.Label  className="font-weight-bold">Departure</Form.Label>
 
                             <Form.Control 
                             {...register("departure")} 

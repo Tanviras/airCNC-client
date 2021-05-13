@@ -27,7 +27,7 @@ const Experiences = () => {
 
             <div className="d-flex justify-content-between mb-3">
                 <h5>Experiences</h5>
-                <Link to="">See All &#8594;	</Link>
+                <Link to="/home">See All</Link>
             </div>
             {
                 preloader ? 
