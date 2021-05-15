@@ -11,15 +11,26 @@ const Homes = () => {
     const [preloader,setPreloader] = useState(true);
     const [allHomes, setAllHomes] = useState([]);
 
+    // useEffect(() => {
+    //     fetch("https://air-cnc-homes-api.herokuapp.com/homes")
+    //     .then(res=>res.json())
+    //     .then(data=>{
+    //         setAllHomes(data);
+    //         setPreloader(false)
+    //     })
+    // },[allHomes.length])
+  
+
+
     useEffect(() => {
-        fetch("https://air-cnc-homes-api.herokuapp.com/homes")
-        .then(res=>res.json())
-        .then(data=>{
-            setAllHomes(data);
-            setPreloader(false)
-        })
-    },[allHomes.length])
-    // console.log(allHomes)
+        fetch("http://localhost:5000/homes")
+          .then((res) => res.json())
+          .then(data => {
+              setAllHomes(data);
+              setPreloader(false)
+          })
+      },[allHomes.length]);
+
 
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const chevronWidth = 40;
@@ -48,7 +59,7 @@ const Homes = () => {
                         chevronWidth={chevronWidth}
                     >
                         {
-                            allHomes.map(home => <Home key={home.key} home={home}/>)
+                            allHomes.map(home => <Home key={home._id} image={home.image.img} home={home}/>)
                         }
                     </ItemsCarousel>
                 </div>

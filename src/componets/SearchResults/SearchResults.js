@@ -13,7 +13,7 @@ const SearchResults = () => {
     console.log(searchData);
 
     useEffect(() => {
-        fetch("https://air-cnc-homes-api.herokuapp.com/homes")
+        fetch("http://localhost:5000/homes")
         .then(res=>res.json())
         .then(data => setResults(data))
     },[results.length])
@@ -26,7 +26,7 @@ const SearchResults = () => {
            <div>
               
                {
-                   results.map(result => <ResultItem key ={result.key} home={result}/> )
+                   results.map(result => <ResultItem key ={result._id} home={result}/> )
                }
                
            </div>

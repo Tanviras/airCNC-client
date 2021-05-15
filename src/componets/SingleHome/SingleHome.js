@@ -35,11 +35,18 @@ const SingleHome = () => {
 
     //fetching particular home details using key
     useEffect(() => {
-        fetch(`https://air-cnc-homes-api.herokuapp.com/homeDetails/${key}`)
+        fetch(`http://localhost:5000/homesById?_id=${key}`)
         .then(res=>res.json())
-        .then(data=> setHome(data));
+        .then(data=> 
+            {
+                setHome(data);
+            }
+        
+        );
     });
+    console.log(home[0].image.img);
 
+  
     useEffect(()=>{
         window.scrollTo(0,0);
     },[]);
@@ -59,7 +66,7 @@ const SingleHome = () => {
                     chevronWidth={chevronWidth}
                 >
                     {/* particular home er image */}
-                    <img className="w-100 d-block" src={home.image} alt=""/>
+                    <img className="w-100 d-block" src={`data:image/png;base64,${home[0].image.img}`} alt=""/>
                     <img className="w-100 d-block" src='https://i.imgur.com/k1rCcMU.jpg' alt=""/> 
                 </ItemsCarousel>
 
