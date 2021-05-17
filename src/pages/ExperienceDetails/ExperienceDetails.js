@@ -18,11 +18,13 @@ const ExperienceDetails = () => {
         );
       });
 
-
     return (
         <div>
             <Header/>
-            <SingleExperience key={experiences._id} experience={experiences} ></SingleExperience>
+            {
+                experiences.map(exp=><SingleExperience key={exp._id} experience={exp}></SingleExperience>)
+            }
+           
         </div>
     );
 };

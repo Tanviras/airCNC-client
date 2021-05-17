@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import ItemsCarousel from 'react-items-carousel';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useEffect } from 'react';
@@ -6,11 +6,10 @@ import Features from '../../componets/SingleHome/Features/Features';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Pricing2 from './Pricing2/Pricing2';
-import messi from '../../imagesAll/images/messi.jpg';
 
 
-const SingleHome2 = () => {
-
+const SingleHome2 = (props) => {
+    const {hostName,homeName,location,guest,bedrooms,beds,bathrooms,image,imageTwo}=props.shome;
 
 
 
@@ -48,8 +47,7 @@ const SingleHome2 = () => {
                     chevronWidth={chevronWidth}
                 >
                     {/* particular home er image */}
-                    <img className="w-100 d-block" src={``} alt="" />
-                    {/* data:image/png;base64,${homeImage.img} */}
+                    <img className="w-100 d-block" src={`data:image/png;base64,${image.img}`} alt="" />
                     <img className="w-100 d-block" src='https://i.imgur.com/k1rCcMU.jpg' alt="" />
                 </ItemsCarousel>
 
@@ -59,21 +57,23 @@ const SingleHome2 = () => {
                         <Col md={7} className="pr-5">
                             <div className="d-flex justify-content-between">
 
+                            <h2>{homeName}</h2>
+
                                 <div className="text-center">
-                                    <img src={messi}
+                                     <img src={`data:image/png;base64,${imageTwo.img}`}
                                         className="host-img"
                                         alt="" />
-                                    <p>Messi</p>
+                                     <p>{hostName}</p>
                                 </div>
 
                             </div>
 
-                            <p className="text-secondary">Dhaka</p>
+                            <p className="text-secondary">{location}</p>
                             <p className="text-secondary border-bottom pb-3">
-                                <span className="mr-3">4 Guests</span>
-                                <span className="mr-3">2 bedrooms</span>
-                                <span className="mr-3">2 beds</span>
-                                <span>2 bathrooms</span>
+                                <span className="mr-3">{guest} Guests</span>
+                                <span className="mr-3">{bedrooms} bedrooms</span>
+                                <span className="mr-3">{beds} beds</span>
+                                <span>{bathrooms} bathrooms</span>
                             </p>
 
                             <Features/>

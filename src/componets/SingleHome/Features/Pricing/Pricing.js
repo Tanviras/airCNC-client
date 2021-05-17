@@ -4,15 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faStar } from '@fortawesome/free-solid-svg-icons';
 import './Pricing.css'; 
 import { useForm } from "react-hook-form";
-// import { yupResolver } from '@hookform/resolvers/yup';
-// import * as yup from "yup";
 import { useHistory } from 'react-router-dom';
 import { SearchContext } from '../../../../App';
 
 
 
 
-const Pricing = () => {
+const Pricing = (props) => {
 
     const { register, handleSubmit} = useForm({});
 
@@ -21,7 +19,6 @@ const Pricing = () => {
     const departureDate=searchData.data.departure.toISOString().slice(0, 10)
     const arrivalTime=searchData.data.arrival.getTime();
     const departureTime=searchData.data.departure.getTime();
-
 
 
     const diffTime = departureTime - arrivalTime;
@@ -34,7 +31,7 @@ const Pricing = () => {
     const totalCharges=totalStayCharges+10+21;
     // console.log(totalCharges);
 
-    const totalGuests=searchData.adult+searchData.child
+    const totalGuests=searchData.adult+searchData.child;
     // console.log(totalGuests);
     
     

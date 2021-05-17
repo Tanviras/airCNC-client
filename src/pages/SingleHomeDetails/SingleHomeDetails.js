@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../componets/Header/Header';
 import SingleHome2 from './SingleHome2';
+import { useParams } from "react-router-dom";
 
 const SingleHomeDetails = () => {
+
+    const {key} = useParams();
+    const [singleHome, setSingleHome] = useState([]);
+
+    //fetching particular home details using key
+    useEffect(() => {
+      fetch(`http://localhost:5000/homesById?_id=${key}`)
+      .then(res=>res.json())
+      .then(data=> 
+          {
+            setSingleHome(data);
+          }
+      );
+    });
+
     return (
         <div>
             <Header/>
-            <SingleHome2></SingleHome2>
+            {
+              singleHome.map(sh=><SingleHome2 key={sh._id} shome={sh}></SingleHome2>) 
+            }
+            
         </div>
     );
 };

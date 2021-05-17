@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from '../../../componets/Header/Header';
 import { Container, Row, Col } from 'react-bootstrap';
 import StepIndicator from '../../../componets/BookingRelated/StepIndecator/StepIndicator';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import HouseRules from '../../../componets/BookingRelated/HouseRule/HouseRules';
 import MeetHost from '../../../componets/BookingRelated/MeetHost/MeetHost';
 import Payment from '../../../componets/BookingRelated/Payment/Payment';
 import CreditCard from '../../../componets/BookingRelated/CreditCard/CreditCard';
 import HouseRules2 from '../HouseRules2';
 import PricingHouseRules from '../PricingHouseRules/PricingHouseRules';
+import { HomeContext } from '../../../App';
 
 const SingleHomeBooking = () => {
     const [step, setStep] = useState(1);
@@ -21,6 +21,9 @@ const SingleHomeBooking = () => {
         window.scrollTo(0,0);
     },[]);
 
+    
+    // const {singleHomeData} = useContext(HomeContext);
+    // console.log(singleHomeData);
 
     return (
         <div>

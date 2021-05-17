@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { render } from "@testing-library/react";
 
 const schema = yup.object().shape({
     hostName: yup.string().required(),
@@ -118,16 +120,17 @@ const HostingHome = () => {
           
       };
 
-
+      
 
     return (
         <div className='hostingPage'>
 
             <div className='text-center'>
             <Link to="/">
-                <img src={logo} alt='logo' className='logoSize '/>
+                <img src={logo} alt='logo' className='logoSize'/>
             </Link>
             </div>
+
 
             <form class="row g-3" onSubmit={handleSubmit(onSubmit)}>
 

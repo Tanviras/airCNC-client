@@ -33,9 +33,7 @@ const Pricing2 = () => {
 
     const onSubmit = data => {
         setSingleHomeData(data);
-        console.log(`home:${singleHomeData}`);
-        console.log(`data:${data}`)
-        // redirect();
+        redirect();
     }
 
     return (

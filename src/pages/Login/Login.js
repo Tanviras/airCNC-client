@@ -10,62 +10,51 @@ import "firebase/auth";
 import { UserContext } from '../../App';
 
 const Login = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    const history = useHistory();
-    const location = useLocation();
-    const { from } = location.state || { from: { pathname: "/" } };
-    var [user, setUser] = useState({
-      name: '',
-      email: ''
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const history = useHistory();
+  const location = useLocation();
+  const { from } = location.state || { from: { pathname: "/" } };
+  // var [user, setUser] = useState({
+  //   name: '',
+  //   email: ''
+  // });
+
+  if (firebase.apps.length === 0) {
+      firebase.initializeApp(firebaseConfig);
+    }
+
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    const handleGoogleSignIn = () => {
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(function (result) {
+          const { displayName, email } = result.user;
+          const signedInUser = { 
+            name: displayName, 
+            email:email,
+           };
+
+          setLoggedInUser(signedInUser);
+          storeAuthToken();
+        })
+        .catch(function (error) {
+          // Handle Errors here.
+        });
+    };
+
+const storeAuthToken = () => {
+  firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
+    .then(function (idToken) {
+
+      //now store the token in session storage
+      sessionStorage.setItem('token', idToken);
+      history.replace(from);
+    }).catch(function (error) {
+      // Handle error
     });
-
-    if (firebase.apps.length === 0) {
-        firebase.initializeApp(firebaseConfig);
-      }
-
-      const provider = new firebase.auth.GoogleAuthProvider();
-
-      const handleGoogleSignIn = () => {
-        firebase
-          .auth()
-          .signInWithPopup(provider)
-          .then(function (result) {
-            const { displayName, email } = result.user;
-            const signedInUser = { 
-              name: displayName, 
-              // email
-              email:email,
-             };
-
-            setLoggedInUser(signedInUser);
-            // history.replace(from);
-            storeAuthToken();
-          })
-          .catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
-          });
-      };
-
-  const storeAuthToken = () => {
-    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
-      .then(function (idToken) {
-        // console.log(idToken);
-        //got our id token while log in
-
-        //now store the token in session storage
-        sessionStorage.setItem('token', idToken);
-        history.replace(from);
-      }).catch(function (error) {
-        // Handle error
-      });
-  }
+}
 
     return (
         <div>
@@ -82,7 +71,7 @@ const Login = () => {
 
                     <div className='loginBox' >
                         <h2> Login With</h2>
-                        <div className='googleBox'  onClick={handleGoogleSignIn}>
+                        <div className='googleBox' onClick={handleGoogleSignIn}>
                             <img src={googleLogo} alt='googleLogo' className='googleLogo' />
                             <span className='writing'>Continue with Google</span>
                         </div>

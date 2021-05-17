@@ -3,6 +3,7 @@ import SearchResults from '../componets/SearchResults/SearchResults';
 import { Row, Col, Container } from 'react-bootstrap';
 import Header2 from '../componets/Header/Header2';
 import Map from '../componets/Map/Map';
+import MapCss from '../componets/Map/MapCss.css';
 
 const SearchResult = () => {
     useEffect(()=>{

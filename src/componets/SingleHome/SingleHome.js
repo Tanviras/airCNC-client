@@ -1,4 +1,4 @@
-import React, {useContext, useState } from 'react';
+import React, { useState } from 'react';
 import ItemsCarousel from 'react-items-carousel';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useEffect } from 'react';
@@ -6,26 +6,16 @@ import Features from './Features/Features';
 import Pricing from './Features/Pricing/Pricing';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import messi from '../../imagesAll/images/messi.jpg';
-import { SearchContext } from '../../App';
 
 
 const SingleHome = (props) => {
-
-    const propsData=props.home;
-    const firstElement = propsData.shift();
-    console.log(firstElement);
-    // // const homeImage = firstElement.image;
+   const {hostName,homeName,location,guest,bedrooms,beds,bathrooms,price,image,imageTwo}=props.hom;
 
 
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const chevronWidth = 40;
 
     const [homeRules, setHomeRules] = useState({});
-
-    const {searchData} = useContext(SearchContext);
-
-
 
     //fetching homerules,homerules are same for every home
     useEffect(() => {
@@ -56,8 +46,7 @@ const SingleHome = (props) => {
                     chevronWidth={chevronWidth}
                 >
                     {/* particular home er image */}
-                    <img className="w-100 d-block" src={``} alt=""/>
-                    {/* data:image/png;base64,${homeImage.img} */}
+                    <img className="w-100 d-block" src={`data:image/png;base64,${image.img}`} alt=""/>
                     <img className="w-100 d-block" src='https://i.imgur.com/k1rCcMU.jpg' alt=""/> 
                 </ItemsCarousel>
 
@@ -69,24 +58,24 @@ const SingleHome = (props) => {
                         <Col md={7} className="pr-5">
                             <div className="d-flex justify-content-between">
 
-                                {/* home name */}
-                                {/* <h2>{home.name}</h2> */}
+                              
+                                <h2>{homeName}</h2>
 
                                 <div className="text-center">
-                                <img src={messi}
+                                <img src={`data:image/png;base64,${imageTwo.img}`}
                                 className="host-img"
                                 alt=""/>
-                                <p>Messi</p>
+                                <p>{hostName}</p>
                                 </div>
                                 
                             </div>
                             
-                            <p className="text-secondary">{searchData.data.city}</p>
+                            <p className="text-secondary">{location}</p>
                             <p className="text-secondary border-bottom pb-3">
-                                <span className="mr-3">4 Guests</span>
-                                <span className="mr-3">2 bedrooms</span>
-                                <span className="mr-3">2 beds</span>
-                                <span>2 bathrooms</span>
+                                <span className="mr-3">{guest} Guests</span>
+                                <span className="mr-3">{bedrooms} bedrooms</span>
+                                <span className="mr-3">{beds} beds</span>
+                                <span>{bathrooms} bathrooms</span>
                             </p>
 
                             <Features/>
@@ -101,7 +90,7 @@ const SingleHome = (props) => {
                         </Col>
 
                         <Col md={5}>
-                            <Pricing/>
+                            <Pricing price={price}/>
                         </Col>
                         
                     </Row>

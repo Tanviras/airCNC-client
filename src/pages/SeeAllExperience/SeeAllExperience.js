@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
+import Header from '../../componets/Header/Header';
 import Map from '../../componets/Map/Map';
-import ResultItem from '../../componets/SearchResults/ResultItem/ResultItem';
 import SearchFilter from '../../componets/SearchResults/SearchFilter/SearchFilter';
+import ResultItemExp from './ResultItemExp/ResultItemExp';
 
 const SeeAllExperience = () => {
     const [results, setResults] = useState([]);
@@ -15,6 +16,9 @@ const SeeAllExperience = () => {
 
     return (
         <div>
+
+            <Header/>
+
            <Container>
                 <Row>
 
@@ -23,7 +27,7 @@ const SeeAllExperience = () => {
                         <div>
 
                             {
-                                results.map(result => <ResultItem key={result._id} home={result} />)
+                                results.map(result => <ResultItemExp key={result._id} home={result} />)
                             }
 
                         </div>

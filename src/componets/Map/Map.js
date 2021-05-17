@@ -17,8 +17,8 @@ const Map = () => {
     // });
         
     return (
-        <div>
-            <img src="https://potionwebstudio.com/wp-content/uploads/2018/10/google-map3.jpg" className="img-fluid" alt=''/>
+        <div className='sticky'>
+            <img src="https://potionwebstudio.com/wp-content/uploads/2018/10/google-map3.jpg" className="img-fluid" alt='' style={{width: '100%',height: '90vh',margin: 'auto'}}/>
         </div>
     );
 };

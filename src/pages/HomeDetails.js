@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 const HomeDetails = () => {
 
     const {key} = useParams();
-    const [home, setHome] = useState([null]);
+    const [home, setHome] = useState([]);
 
       //fetching particular home details using key
       useEffect(() => {
@@ -19,10 +19,14 @@ const HomeDetails = () => {
         );
       });
 
+
     return (
         <div>
             <Header2/>
-            <SingleHome key={home._id} home={home}/>
+            {
+                home.map(h=><SingleHome key={h._id} hom={h}/>)
+            }
+           
         </div>
     );
 };

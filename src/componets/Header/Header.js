@@ -16,12 +16,12 @@ const Header = () => {
             </Navbar.Brand>
 
 
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto align-items-center">
+                    <Link to="/home" className="nav-link">Home</Link>
                     <Link to="/host-home" className="nav-link">Host your Home</Link>
                     <Link to="/host-experience" className="nav-link">Host your Experience</Link>
-                    <Link to="/help" className="nav-link">Help</Link>
                     <Link to="/login"><Button variant="primary" className="btn-rounded">Login</Button></Link>
                 </Nav>   
             </Navbar.Collapse>
