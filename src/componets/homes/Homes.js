@@ -11,16 +11,6 @@ const Homes = () => {
     const [preloader,setPreloader] = useState(true);
     const [allHomes, setAllHomes] = useState([]);
 
-    // useEffect(() => {
-    //     fetch("https://air-cnc-homes-api.herokuapp.com/homes")
-    //     .then(res=>res.json())
-    //     .then(data=>{
-    //         setAllHomes(data);
-    //         setPreloader(false)
-    //     })
-    // },[allHomes.length])
-  
-
 
     useEffect(() => {
         fetch("http://localhost:5000/homes")
@@ -40,7 +30,7 @@ const Homes = () => {
 
             <div className="d-flex justify-content-between mb-3">
                 <h5>Homes</h5>
-                <Link to="">See All &#8594;	</Link>
+                <Link to="/homes">See All</Link>
             </div>
             {
                 preloader ?

@@ -1,21 +1,17 @@
-import React, {useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ItemsCarousel from 'react-items-carousel';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useEffect } from 'react';
-import Features from './Features/Features';
-import Pricing from './Features/Pricing/Pricing';
+import Features from '../../componets/SingleHome/Features/Features';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Pricing2 from './Pricing2/Pricing2';
 import messi from '../../imagesAll/images/messi.jpg';
-import { SearchContext } from '../../App';
 
 
-const SingleHome = (props) => {
+const SingleHome2 = () => {
 
-    const propsData=props.home;
-    const firstElement = propsData.shift();
-    console.log(firstElement);
-    // // const homeImage = firstElement.image;
+
 
 
     const [activeItemIndex, setActiveItemIndex] = useState(0);
@@ -23,24 +19,20 @@ const SingleHome = (props) => {
 
     const [homeRules, setHomeRules] = useState({});
 
-    const {searchData} = useContext(SearchContext);
 
 
 
     //fetching homerules,homerules are same for every home
     useEffect(() => {
         fetch("https://air-cnc-homes-api.herokuapp.com/homeRules")
-        .then(res=>res.json())
-        .then(data=> setHomeRules(data));
+            .then(res => res.json())
+            .then(data => setHomeRules(data));
     }, [homeRules.length]);
 
 
-
- 
-  
-    useEffect(()=>{
-        window.scrollTo(0,0);
-    },[]);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div>
@@ -56,12 +48,10 @@ const SingleHome = (props) => {
                     chevronWidth={chevronWidth}
                 >
                     {/* particular home er image */}
-                    <img className="w-100 d-block" src={``} alt=""/>
+                    <img className="w-100 d-block" src={``} alt="" />
                     {/* data:image/png;base64,${homeImage.img} */}
-                    <img className="w-100 d-block" src='https://i.imgur.com/k1rCcMU.jpg' alt=""/> 
+                    <img className="w-100 d-block" src='https://i.imgur.com/k1rCcMU.jpg' alt="" />
                 </ItemsCarousel>
-
-
 
 
                 <Container>
@@ -69,19 +59,16 @@ const SingleHome = (props) => {
                         <Col md={7} className="pr-5">
                             <div className="d-flex justify-content-between">
 
-                                {/* home name */}
-                                {/* <h2>{home.name}</h2> */}
-
                                 <div className="text-center">
-                                <img src={messi}
-                                className="host-img"
-                                alt=""/>
-                                <p>Messi</p>
+                                    <img src={messi}
+                                        className="host-img"
+                                        alt="" />
+                                    <p>Messi</p>
                                 </div>
-                                
+
                             </div>
-                            
-                            <p className="text-secondary">{searchData.data.city}</p>
+
+                            <p className="text-secondary">Dhaka</p>
                             <p className="text-secondary border-bottom pb-3">
                                 <span className="mr-3">4 Guests</span>
                                 <span className="mr-3">2 bedrooms</span>
@@ -90,7 +77,6 @@ const SingleHome = (props) => {
                             </p>
 
                             <Features/>
-
                             <p className="border-top pt-3">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, veniam aperiam saepe aliquam sit libero non voluptates tempore est totam numquam, perferendis dolore a minus dolores ullam quaerat necessitatibus hic? Consequuntur commodi provident vero soluta placeat pariatur dolor corporis repudiandae! Distinctio maxime ad, aspernatur, eos dignissimos sed dolor repellendus tempore a sint quae facilis nesciunt quasi ullam tempora ut. Doloribus exercitationem dicta maxime adipisci! Necessitatibus, nihil? Ipsam repellat, aut distinctio sint et laboriosam, esse, corporis consequatur praesentium aliquam saepe fugit repellendus. Aliquam quos excepturi molestias cumque iusto? Fugiat consequuntur, cupiditate quos accusamus ipsam distinctio voluptatibus sit fuga. Facere, consequuntur sint!
                             </p>
@@ -98,20 +84,20 @@ const SingleHome = (props) => {
                             <p>
                             <FontAwesomeIcon className="text-primary" icon={faStar}/> 5 (200 reviews)
                             </p> 
+
                         </Col>
 
                         <Col md={5}>
-                            <Pricing/>
+                            <Pricing2/>
                         </Col>
-                        
-                    </Row>
 
-                    
+                    </Row>
                 </Container>
+
+
             </div>
-            
         </div>
     );
 };
 
-export default SingleHome;
+export default SingleHome2;

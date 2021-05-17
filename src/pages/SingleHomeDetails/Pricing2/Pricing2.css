@@ -1,0 +1,10 @@
+.preview li{
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid rgb(212, 212, 212);
+}
+.preview li.total{
+    border:0;
+}

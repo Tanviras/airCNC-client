@@ -11,7 +11,7 @@ const Home = (props) => {
         
         <div className="home">
 
-            <Link to={`/home/${_id}`}>
+            <Link to={`/singleHome/${_id}`}>
             <img className="img-fluid rounded" src={`data:image/png;base64,${image.img}`} alt=''/>
             </Link>
 
@@ -28,7 +28,7 @@ const Home = (props) => {
                         <FontAwesomeIcon icon={faStar}/>
                     </div>
                     
-                <span className="mx-1">5</span> . superhost
+                <span className="mx-1">5</span> superhost
                 </div>
         </div>
     

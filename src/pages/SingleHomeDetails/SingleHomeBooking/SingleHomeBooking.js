@@ -1,18 +1,17 @@
-import React, { useContext } from 'react';
-import Header2 from '../componets/Header/Header2';
+import React from 'react';
+import Header from '../../../componets/Header/Header';
 import { Container, Row, Col } from 'react-bootstrap';
-import HouseRules from '../componets/BookingRelated/HouseRule/HouseRules';
-import StepIndicator from '../componets/BookingRelated/StepIndecator/StepIndicator';
+import StepIndicator from '../../../componets/BookingRelated/StepIndecator/StepIndicator';
 import { useEffect } from 'react';
-import PricingReview from '../componets/BookingRelated/PricingReview/PricingReview';
 import { useState } from 'react';
-import MeetHost from '../componets/BookingRelated/MeetHost/MeetHost';
-import Payment from '../componets/BookingRelated/Payment/Payment';
-import CreditCard from '../componets/BookingRelated/CreditCard/CreditCard';
-import { SearchContext } from '../App';
+import HouseRules from '../../../componets/BookingRelated/HouseRule/HouseRules';
+import MeetHost from '../../../componets/BookingRelated/MeetHost/MeetHost';
+import Payment from '../../../componets/BookingRelated/Payment/Payment';
+import CreditCard from '../../../componets/BookingRelated/CreditCard/CreditCard';
+import HouseRules2 from '../HouseRules2';
+import PricingHouseRules from '../PricingHouseRules/PricingHouseRules';
 
-const Booking = () => {
-    
+const SingleHomeBooking = () => {
     const [step, setStep] = useState(1);
     const stepHandler = (data) => {
         setStep(step +1);
@@ -23,20 +22,18 @@ const Booking = () => {
     },[]);
 
 
-
-
     return (
-        <>
-        <Header2/>
-        
-        <Container className="my-5">
+        <div>
+            <Header/>
+
+            <Container className="my-5">
             <StepIndicator step={step}/>
             <Row className="my-4">
 
                 <Col md={7}>
                     {
                         step === 1 ?
-                        <HouseRules stepHandler={stepHandler}/>
+                        <HouseRules2 stepHandler={stepHandler}/>
                         :
                         step === 2 ?
                         <MeetHost stepHandler={stepHandler}/>
@@ -50,13 +47,13 @@ const Booking = () => {
                 </Col>
 
                 <Col md={5}>
-                    <PricingReview/>
+                    <PricingHouseRules/>
                 </Col>
                 
             </Row>
         </Container>
-        </>
+        </div>
     );
 };
 
-export default Booking;
+export default SingleHomeBooking;

@@ -11,17 +11,26 @@ import HostingHome from './pages/HostingHome/HostingHome';
 import HostingExperience from './pages/HostingExperience/HostingExperience';
 import Login from './pages/Login/Login';
 import PrivateRoute from './pages/Login/PrivateRoute';
+import SeeAllHome from './pages/SeeAllHome/SeeAllHome';
+import SeeAllExperience from './pages/SeeAllExperience/SeeAllExperience';
+import ExperienceDetails from "./pages/ExperienceDetails/ExperienceDetails";
+import SingleHomeDetails from './pages/SingleHomeDetails/SingleHomeDetails';
+import SingleHomeBooking from './pages/SingleHomeDetails/SingleHomeBooking/SingleHomeBooking';
 
 export const SearchContext = createContext();
 export const UserContext = createContext();
+export const HomeContext = createContext();
 
 function App() {
   const [searchData, setSearchData] = useState({});
   const [loggedInUser, setLoggedInUser] = useState({});
+  const [singleHomeData, setSingleHomeData] = useState({});
   
   return (
     <SearchContext.Provider value={{searchData, setSearchData}}>
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+    <HomeContext.Provider value={{singleHomeData, setSingleHomeData}}>
+
     <Router>
       <Switch>
           <Route exact path="/">
@@ -40,8 +49,28 @@ function App() {
             <HomeDetails/>
           </Route>
 
+          <Route path="/singleHome/:key">
+            <SingleHomeDetails/>
+          </Route>
+
+          <Route path="/experience/:key">
+            <ExperienceDetails/>
+          </Route>
+
           <Route path="/booking">
             <Booking/>
+          </Route>
+
+          <Route path="/bookingSingleHome">
+            <SingleHomeBooking/>
+          </Route>
+
+          <Route path="/homes">
+            <SeeAllHome></SeeAllHome>
+          </Route>
+
+          <Route path="/experiences">
+            <SeeAllExperience></SeeAllExperience>
           </Route>
 
           <PrivateRoute path="/host-home">
@@ -56,14 +85,19 @@ function App() {
             <Login></Login>
           </Route>
 
+        
+
+
+
 
           <Route path="*">
             <NotFound/>
           </Route>
 
       </Switch>
-
     </Router>
+    
+    </HomeContext.Provider>
     </UserContext.Provider>
     </SearchContext.Provider>
   );

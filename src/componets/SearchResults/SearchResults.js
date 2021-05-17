@@ -10,7 +10,6 @@ const SearchResults = () => {
 
     const [results, setResults] = useState([]);
     const {searchData} = useContext(SearchContext);
-    console.log(searchData);
 
     useEffect(() => {
         fetch("http://localhost:5000/homes")

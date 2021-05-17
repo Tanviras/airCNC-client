@@ -130,15 +130,8 @@ const AdvanceSearch = () => {
                                      variant="default" size="sm">-
                                      </Button>
 
-                                    {/* <input 
-                                    {...register("adult")} 
-                                    name="adult"
-                                    defaultValue={adult}
-                                    type="number"
-                                    /> */}
                                     {adult}
                                    
-
                                     <Button variant="default" size="sm"
                                     onClick={() =>  setAdult(adult + 1)}
                                     >+</Button>
@@ -161,12 +154,7 @@ const AdvanceSearch = () => {
                                      variant="default" size="sm">-
                                      </Button>
 
-                                    {/* <input 
-                                    {...register("adult")} 
-                                    name="adult"
-                                    defaultValue={adult}
-                                    type="number"
-                                    /> */}
+                                  
                                     {child}
                                    
 
@@ -190,12 +178,7 @@ const AdvanceSearch = () => {
                                      variant="default" size="sm">-
                                 </Button>
 
-                                    {/* <input 
-                                    {...register("adult")} 
-                                    name="adult"
-                                    defaultValue={adult}
-                                    type="number"
-                                    /> */}
+                            
                                     {baby}
                                    
 

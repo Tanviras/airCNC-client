@@ -11,7 +11,7 @@ const Experiences = () => {
     const [preloader, setPreloader] = useState(true);
     
     useEffect(() => {
-        fetch("https://air-cnc-homes-api.herokuapp.com/experiences")
+        fetch("http://localhost:5000/experiences")
         .then(res=>res.json())
         .then(data=>{
             setAllExperience(data);
@@ -27,7 +27,7 @@ const Experiences = () => {
 
             <div className="d-flex justify-content-between mb-3">
                 <h5>Experiences</h5>
-                <Link to="/home">See All</Link>
+                <Link to="/experiences">See All</Link>
             </div>
             {
                 preloader ? 
@@ -45,7 +45,7 @@ const Experiences = () => {
                         chevronWidth={chevronWidth}
                     >
                         {
-                            allExperience.map(experience => <Experience key ={experience.key} experience={experience}/>)
+                            allExperience.map(experience => <Experience key ={experience._id} experience={experience}/>)
                         }
                         
                     </ItemsCarousel>
