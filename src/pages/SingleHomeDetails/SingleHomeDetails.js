@@ -10,7 +10,7 @@ const SingleHomeDetails = () => {
 
     //fetching particular home details using key
     useEffect(() => {
-      fetch(`http://localhost:5000/homesById?_id=${key}`)
+      fetch(`https://desolate-river-36921.herokuapp.com/homesById?_id=${key}`)
       .then(res=>res.json())
       .then(data=> 
           {

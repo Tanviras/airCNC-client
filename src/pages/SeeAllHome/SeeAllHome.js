@@ -10,7 +10,7 @@ const SeeAllHome = () => {
     const [results, setResults] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/homes")
+        fetch("https://desolate-river-36921.herokuapp.com/homes")
             .then(res => res.json())
             .then(data => setResults(data))
     }, [results.length])

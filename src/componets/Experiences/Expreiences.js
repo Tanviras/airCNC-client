@@ -11,7 +11,7 @@ const Experiences = () => {
     const [preloader, setPreloader] = useState(true);
     
     useEffect(() => {
-        fetch("http://localhost:5000/experiences")
+        fetch("https://desolate-river-36921.herokuapp.com/experiences")
         .then(res=>res.json())
         .then(data=>{
             setAllExperience(data);

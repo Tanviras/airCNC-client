@@ -78,7 +78,7 @@ const HostingExperience = () => {
         formData.append("heading",info.heading);
         formData.append("description",info.description);
 
-        fetch("http://localhost:5000/addExperiences", {
+        fetch("https://desolate-river-36921.herokuapp.com/addExperiences", {
           method: "POST",
           body: formData,
         })

@@ -106,7 +106,7 @@ const HostingHome = () => {
         formData.append("swimmingPool",info.swimmingPool);
         formData.append("price",info.price);
 
-        fetch("http://localhost:5000/addHomes", {
+        fetch("https://desolate-river-36921.herokuapp.com/addHomes", {
           method: "POST",
           body: formData,
         })

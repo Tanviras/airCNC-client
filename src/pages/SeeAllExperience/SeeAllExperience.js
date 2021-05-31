@@ -9,7 +9,7 @@ const SeeAllExperience = () => {
     const [results, setResults] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/experiences")
+        fetch("https://desolate-river-36921.herokuapp.com/experiences")
         .then(res=>res.json())
         .then(data => setResults(data))
     },[results.length])
