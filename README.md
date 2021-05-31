@@ -20,3 +20,20 @@ Aircnc is a full-stack site which is mainly community-based online platform for 
 <li>Our clients can host their own home too for other travelers</li>
 <li>Clients can also host their experiences to let others know about a tourist spot </li>
 </ul>
+
+<h2>Technologies</h2>
+<ul>
+  <li>ReactJS</li>
+  <li>React Router</li>
+  <li>NodeJS</li>
+  <li>ExpressJS</li>
+  <li>MongoDB</li>
+  <li>React Hook Form</li>
+  <li>Bootstrap</li>
+  <li>Material UI</li>
+  <li>Heroku</li>
+  <li>Sass</li>
+  <li>Stripe</li>
+  <li>HTML</li>
+  <li>CSS</li>
+</ul>
