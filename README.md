@@ -35,5 +35,5 @@ Aircnc is a full-stack site which is mainly community-based online platform for 
   <li>Sass</li>
   <li>Stripe</li>
   <li>HTML</li>
-  <li>CSS</li>
+  <li>CSS etc.</li>
 </ul>
