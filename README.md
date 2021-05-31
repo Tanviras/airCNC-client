@@ -5,7 +5,7 @@ Aircnc is a full-stack site which is mainly community-based online platform for 
 </p>
 
 <h2>The source code is uploaded at two parts in two repositories.</h2>
-<b>Live Link:</b> https://creative-agency-70516.web.app <br>
-<b>Client:</b> https://github.com/SakifKhan98/creative-agency-client <br>
-<b>Server:</b> https://github.com/SakifKhan98/creative-agency-server
+<b>Live Link:</b> https://aircnc-8c1bd.web.app <br><br>
+<b>Client:</b> https://github.com/Tanviras/airCNC-client  <br><br>
+<b>Server:</b> https://github.com/Tanviras/airCNC-server
 
