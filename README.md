@@ -9,3 +9,14 @@ Aircnc is a full-stack site which is mainly community-based online platform for 
 <b>Client:</b> https://github.com/Tanviras/airCNC-client  <br><br>
 <b>Server:</b> https://github.com/Tanviras/airCNC-server
 
+<h2>Main Features</h2>
+<ul>
+<li>Client can search for homes in their desired location</li>
+<li>A client can will let the host know the dates of arrival and departure and the guest numbers while searching</li>
+<li>Can select any of the houses when the search-results will appear</li>
+<li>Then after following some formalities step, our client will pay the money through a payment gateway system</li>
+<li>Besides all of these,our clients can surf all the houses if he wishes without searching for any particular place</li>
+<li>Same goes for the 'experience' section</li>
+<li>Our clients can host their own home too for other travelers</li>
+<li>Clients can also host their experiences to let others know about a tourist spot </li>
+</ul>
