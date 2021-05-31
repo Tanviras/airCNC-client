@@ -28,6 +28,7 @@ Aircnc is a full-stack site which is mainly community-based online platform for 
   <li>NodeJS</li>
   <li>ExpressJS</li>
   <li>MongoDB</li>
+  <li>Firebase Authentication</li>
   <li>React Hook Form</li>
   <li>Bootstrap</li>
   <li>Material UI</li>
